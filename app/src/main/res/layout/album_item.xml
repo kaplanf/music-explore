@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="albumItem"
+            type="com.kaplan.musicexplore.ui.album.data.Album" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:onClick="@{clickListener}">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <ImageView
+            android:id="@+id/albumImage"
+            android:layout_width="75dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"
+            app:imageFromUrl="@{albumItem.artworkUrl100}"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toLeftOf="@id/leftGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/albumExplicitLabel"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/albumImage"
+            app:layout_constraintRight_toRightOf="@id/albumImage"
+            app:layout_constraintLeft_toLeftOf="@id/albumImage"
+            android:layout_marginTop="5dp"
+            tools:text="Explicit"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/albumName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:text="@{albumItem.collectionName}"
+            android:textAppearance="?attr/textAppearanceListItem"
+            app:layout_constraintLeft_toRightOf="@id/albumImage"
+            app:layout_constraintRight_toRightOf="@id/rightGuideline"
+            app:layout_constraintTop_toTopOf="@id/albumImage"
+            tools:text="My Beautiful Dark Twisted Fantasy" />
+
+        <TextView
+            android:id="@+id/genreName"
+            android:layout_width="0dp"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:layout_marginBottom="5dp"
+            android:text="@{albumItem.primaryGenreName}"
+            android:textAppearance="?attr/textAppearanceListItem"
+            app:layout_constraintLeft_toRightOf="@id/albumImage"
+            app:layout_constraintRight_toRightOf="@id/rightGuideline"
+            app:layout_constraintBottom_toTopOf="@+id/albumReleaseDate"
+            tools:text="Hip-Hop/Rap" />
+
+        <TextView
+            android:id="@+id/albumReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/albumItemDivider"
+            app:layout_constraintLeft_toRightOf="@id/albumImage"
+            android:layout_height="wrap_content"
+            tools:text="Jan 01 2010"/>
+
+        <View
+            android:id="@+id/albumItemDivider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"></View>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

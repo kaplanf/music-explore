@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Music Explore</string>
+    <string name="empty_list">Empty List</string>
+    <string name="artist_list">Artist List</string>
+    <string name="album_list">Album List</string>
+    <string name="track_list">Track List</string>
+    <string name="time_format_pm">PM</string>
+    <string name="time_format_am">AM</string>
+    <string name="liked_tracks_title">Liked Tracks</string>
+    <string name="search_hint">Search Artists Here</string>
+</resources>

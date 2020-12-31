@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/artists_fragment">
+
+    <fragment
+        android:id="@+id/artists_fragment"
+        android:name="com.kaplan.musicexplore.ui.artist.view.ArtistsFragment"
+        android:label="@string/artist_list"
+        tools:layout="@layout/fragment_artists">
+
+        <action
+            android:id="@+id/action_to_albums_fragment"
+            app:destination="@id/albums_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/albums_fragment"
+        android:name="com.kaplan.musicexplore.ui.album.view.AlbumsFragment"
+        android:label="@string/album_list"
+        tools:layout="@layout/fragment_albums">
+
+        <argument
+            android:name="artistId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+
+        <action
+            android:id="@+id/action_to_tracks_fragment"
+            app:destination="@id/tracks_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tracks_fragment"
+        android:name="com.kaplan.musicexplore.ui.track.view.TracksFragment"
+        android:label="@string/track_list"
+        tools:layout="@layout/fragment_tracks">
+
+        <argument
+            android:name="trackId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorites_fragment"
+        android:name="com.kaplan.musicexplore.ui.favorite.view.FavoriteFragment"
+        android:label="@string/track_list"
+        tools:layout="@layout/fragment_favorite">
+
+    </fragment>
+</navigation>
