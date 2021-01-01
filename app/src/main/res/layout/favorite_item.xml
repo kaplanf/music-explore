@@ -16,6 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:background="@color/card_background"
         android:onClick="@{clickListener}">
 
         <androidx.constraintlayout.widget.Guideline
@@ -51,15 +52,17 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:ellipsize="end"
+            android:fontFamily="@font/titillium_bold"
             android:includeFontPadding="false"
+            android:textColor="@color/card_color_second"
             android:textSize="16sp"
-            android:textStyle="bold"
             android:maxLines="2"
             android:text="@{favoriteItem.trackName}"
             android:textAppearance="?attr/textAppearanceListItem"
             app:layout_constraintLeft_toRightOf="@id/favoriteImage"
             app:layout_constraintRight_toRightOf="@id/rightGuideline"
             app:layout_constraintTop_toTopOf="@id/favoriteImage"
+            app:layout_constraintBottom_toBottomOf="@id/favoriteImage"
             tools:text="So Appalled (feat. Jay-Z, Pusha T, Prynce Cy Hi, Swizz Beatz)" />
 
         <TextView
@@ -69,9 +72,9 @@
             app:layout_constraintLeft_toLeftOf="@id/favoriteName"
             android:layout_marginBottom="5dp"
             tools:text="Explicit"
+            android:fontFamily="@font/titillium_bold"
             android:textSize="8sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_red_dark"
+            app:explicitColor="@{favoriteItem.trackName}"
             android:layout_height="wrap_content"/>
 
         <TextView
@@ -82,8 +85,9 @@
             android:layout_marginBottom="5dp"
             tools:text="2 minutes 28 seconds"
             app:trackTime="@{favoriteItem.trackTimeMillis}"
+            android:fontFamily="@font/titillium_light"
             android:textSize="8sp"
-            android:textColor="@android:color/black"
+            android:textColor="@color/card_color"
             android:layout_height="wrap_content"/>
 
 
@@ -92,7 +96,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
-            android:background="@color/black"
+            android:background="@color/bright_yellow"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             app:layout_constraintEnd_toEndOf="parent"

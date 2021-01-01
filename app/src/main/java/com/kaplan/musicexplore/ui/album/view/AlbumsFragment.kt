@@ -118,7 +118,7 @@ class AlbumsFragment : Fragment(), Injectable {
         }
     }
 
-    fun selectAlbumsFromList(albums: List<Album>): List<Album> {
+    private fun selectAlbumsFromList(albums: List<Album>): List<Album> {
         return albums.filter { album -> album.collectionType == "Album" }
     }
 }

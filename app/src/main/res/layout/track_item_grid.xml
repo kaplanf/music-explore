@@ -17,19 +17,23 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:layout_centerInParent="true"
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="180dp"
-                android:elevation="12dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="2dp"
-                app:layout_constraintDimensionRatio="1:1"
+                android:elevation="3dp"
+                android:thicknessRatio="1.9"
+                app:cardBackgroundColor="@color/card_background"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintDimensionRatio="0.95:1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -55,13 +59,15 @@
                         android:id="@+id/artistName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+
                         android:ellipsize="end"
+                        android:fontFamily="@font/titillium_bold"
                         android:includeFontPadding="false"
                         android:maxLines="2"
                         android:text="@{trackItem.artistName}"
+                        android:textColor="@color/card_color"
                         android:textAppearance="?attr/textAppearanceListItem"
-                        android:textSize="15sp"
+                        android:textSize="16sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/trackImage"
@@ -72,13 +78,15 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
+                        android:fontFamily="@font/titillium_regular"
                         android:includeFontPadding="false"
                         android:maxLines="2"
-                        android:padding="5dp"
+                        android:textColor="@color/card_text"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:text="@{trackItem.trackName}"
                         android:textAppearance="?attr/textAppearanceListItem"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
+                        android:textSize="13sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/artistName"
@@ -88,9 +96,10 @@
                         android:id="@+id/trackDuration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/titillium_light"
                         android:layout_margin="5dp"
-                        android:textColor="@android:color/black"
-                        android:textSize="8sp"
+                        android:textColor="@color/card_color"
+                        android:textSize="10sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:trackTime="@{trackItem.trackTimeMillis}"
@@ -100,21 +109,24 @@
                         android:id="@+id/trackLikeIcon"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginEnd="3dp"
+                        app:tint="@color/card_color_second"
                         android:onClick="@{clickListener}"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/trackDuration"
                         app:layout_constraintRight_toRightOf="parent"
                         app:selectDrawable="@{trackItem.isLiked}"
-                        tools:src="@drawable/ic_like" />
+                        tools:src="@drawable/ic_favorite_unselected" />
 
                     <TextView
                         android:id="@+id/trackExplicitLabel"
                         android:layout_width="wrap_content"
+                        android:fontFamily="@font/titillium_bold"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:textColor="@android:color/holo_red_dark"
-                        android:textSize="8sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/trackDuration"
+                        android:layout_marginLeft="5dp"
+                        app:explicitColor="@{trackItem.artistName}"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toTopOf="@id/trackDuration"
                         app:layout_constraintLeft_toLeftOf="parent"
                         tools:text="Explicit" />
 

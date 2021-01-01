@@ -54,6 +54,12 @@ class TracksViewModel @Inject constructor(
         }
     }
 
+    fun deleteTrack(track: Track) {
+        ioCoroutineScope.launch {
+            repository.deleteTrack(track)
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         ioCoroutineScope.cancel()

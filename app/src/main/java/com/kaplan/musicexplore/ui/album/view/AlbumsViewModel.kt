@@ -21,9 +21,9 @@ class AlbumsViewModel @Inject constructor(
 
 {
     var connectivityAvailable: Boolean = false
-    val pageLiveData = MutableLiveData<Int>() default 0
+    private val pageLiveData = MutableLiveData<Int>() default 0
     val offset: Int get() = (pageLiveData.value!! > 0) then (pageLiveData.value!!) * 20 ?: 0
-    val albumIdLiveData = MutableLiveData<Long>() default 0
+    private val albumIdLiveData = MutableLiveData<Long>() default 0
 
     var mutablelist = MutableLiveData<Result<List<Album>>>()
     val list: LiveData<Result<List<Album>>> get() = mutablelist
@@ -38,7 +38,7 @@ class AlbumsViewModel @Inject constructor(
         }
     }
 
-    fun getAlbums(id: String) = repository.observeAlbums(id, offset)
+    private fun getAlbums(id: String) = repository.observeAlbums(id, offset)
 
     fun setPage(page: Int) {
         pageLiveData.value = page

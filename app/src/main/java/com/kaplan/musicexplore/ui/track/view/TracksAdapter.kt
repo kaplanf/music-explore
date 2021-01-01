@@ -49,9 +49,8 @@ class TracksAdapter @Inject constructor(context: Context) :
         return View.OnClickListener {
             when(it.id){
                 R.id.trackLikeIcon -> {
-                    val tempTrack = track
-                    tempTrack.isLiked = !tempTrack.isLiked
-                    viewModelAdapter.insertTrack(tempTrack)
+                    if(track.isLiked) viewModelAdapter.deleteTrack(track) else viewModelAdapter.insertTrack(track)
+                    track.isLiked = !track.isLiked
                 }
             }
         }

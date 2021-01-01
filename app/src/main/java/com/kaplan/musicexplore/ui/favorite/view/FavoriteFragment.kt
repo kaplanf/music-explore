@@ -116,7 +116,6 @@ class FavoriteFragment : Fragment(), Injectable {
     override fun onDestroy() {
         super.onDestroy()
         if (this::player.isInitialized)
-            stop()
             player.release()
     }
 }

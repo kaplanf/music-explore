@@ -15,6 +15,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/card_background"
         android:layout_height="wrap_content"
         android:onClick="@{clickListener}">
 
@@ -36,12 +37,13 @@
             android:id="@+id/artistName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/card_color_second"
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:textSize="20sp"
-            android:textStyle="bold"
             android:maxLines="2"
+            android:fontFamily="@font/titillium_bold"
             android:text="@{artistItem.artistName}"
             android:textAppearance="?attr/textAppearanceListItem"
             app:layout_constraintLeft_toLeftOf="@id/leftGuideline"
@@ -53,8 +55,10 @@
             android:id="@+id/genreName"
             android:layout_width="0dp"
             android:textSize="16sp"
+            android:textColor="@color/card_color"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/titillium_regular"
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:maxLines="1"
@@ -69,11 +73,11 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
-            android:background="@color/black"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/bright_yellow"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/genreName"></View>

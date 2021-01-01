@@ -37,6 +37,7 @@ class TracksFragment : Fragment(), Injectable {
     private val args: TracksFragmentArgs by navArgs()
 
     private var likedIds = mutableListOf<Int>()
+    private var tracksList = mutableListOf<Track>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,6 +82,7 @@ class TracksFragment : Fragment(), Injectable {
             likedIds = likedTracks.map { favorite ->
                 favorite.trackId
             }.toMutableList()
+            tracksAdapter.notifyDataSetChanged()
         }
     }
 
@@ -127,12 +129,13 @@ class TracksFragment : Fragment(), Injectable {
         }
     }
 
-    fun selectTracksFromList(tracks: List<Track>): List<Track> {
+    private fun selectTracksFromList(tracks: List<Track>): List<Track> {
         tracks.onEach { track ->
             if (likedIds.any { it == track.trackId }) {
                 track.isLiked = true
             }
         }
-        return tracks.filter { track -> track.wrapperType == "track" }
+        tracksList = tracks.filter { track -> track.wrapperType == "track" }.toMutableList()
+        return tracksList
     }
 }

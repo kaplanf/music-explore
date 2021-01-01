@@ -16,14 +16,30 @@ class TrackRepository @Inject constructor(
     fun observeTracks(id: String, offset: Int) = resultLiveData(
         databaseQuery = { dao.getTrackbyId(id) },
         networkCall = { trackRemoteDataSource.getTracks(id, offset) },
-        saveCallResult = { dao.insertAll(it.results.filter { track -> track.trackName.isNullOrEmpty().not() })}
+        saveCallResult = {
+            dao.insertAll(it.results.filter { track ->
+                track.trackName.isNullOrEmpty().not()
+            })
+        }
     )
 
     suspend fun saveTrack(track: Track) {
         favoriteDao.saveFavorite(convertTrackToFavorite(track))
     }
 
+    suspend fun deleteTrack(track: Track) {
+        favoriteDao.deleteFavorite(convertTrackToFavorite(track))
+    }
+
     fun getLikedTracks() = favoriteDao.getLikedTracks()
 
-    fun convertTrackToFavorite(track: Track): Favorite = Favorite(track.trackId,  Calendar.getInstance().time, track.trackName, track.trackViewUrl, track.previewUrl, track.artworkUrl100, track.trackTimeMillis)
+    fun convertTrackToFavorite(track: Track): Favorite = Favorite(
+        track.trackId,
+        Calendar.getInstance().time,
+        track.trackName,
+        track.trackViewUrl,
+        track.previewUrl,
+        track.artworkUrl100,
+        track.trackTimeMillis
+    )
 }

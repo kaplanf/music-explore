@@ -9,6 +9,6 @@ class SuggestionProvider : SearchRecentSuggestionsProvider() {
 
     companion object {
         const val AUTHORITY = "com.kaplan.musicexplore.ui.artist.view.SuggestionProvider"
-        const val MODE: Int = SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES
+        const val MODE: Int = DATABASE_MODE_QUERIES
     }
 }

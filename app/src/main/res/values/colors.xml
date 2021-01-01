@@ -6,10 +6,20 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#CCFFFFFF</color>
+    <color name="white">#99FFFFFF</color>
 
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="clean">#003d49</color>
+    <color name="explicit">#ba0f20</color>
+    <color name="bright_yellow">#ffeb4d</color>
+
+    <color name="card_background">#fff1cf</color>
+    <color name="card_background_light">#ffffef</color>
+    <color name="card_text">#ca8e6f</color>
+    <color name="card_color">#ba4607</color>
+    <color name="card_color_second">#ba4607</color>
+
+    <color name="colorPrimary">#EEca8e6f</color>
+    <color name="colorPrimaryDark">#DDba4607</color>
+    <color name="colorAccent">#ffffef</color>
 
 </resources>

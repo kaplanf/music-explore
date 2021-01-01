@@ -1,6 +1,10 @@
 package com.kaplan.musicexplore.ui.artist.view
 
+import android.app.SearchManager
+import android.content.Context
+import android.database.Cursor
 import android.os.Bundle
+import android.provider.SearchRecentSuggestions
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.kaplan.musicexplore.data.Result
 import com.kaplan.musicexplore.databinding.FragmentArtistsBinding
 import com.kaplan.musicexplore.di.Injectable
 import com.kaplan.musicexplore.di.injectViewModel
@@ -17,7 +22,6 @@ import com.kaplan.musicexplore.util.EndlessScrollModel
 import com.kaplan.musicexplore.util.ui.hide
 import com.kaplan.musicexplore.util.ui.show
 import javax.inject.Inject
-import com.kaplan.musicexplore.data.Result
 
 
 class ArtistsFragment : Fragment(), Injectable {
@@ -55,10 +59,22 @@ class ArtistsFragment : Fragment(), Injectable {
             recyclerView.adapter = artistAdapter
             binding.viewModel = artistsViewModel
             model = endlessScrollModel
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        }
+        initSearchView()
+    }
+
+    private fun initSearchView() {
+        binding.searchView.apply {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (query.isNullOrEmpty().not() && query!!.length > 1)
                         artistsViewModel.onLoadMore(query)
+                    val suggestions = SearchRecentSuggestions(
+                        activity,
+                        SuggestionProvider.AUTHORITY,
+                        SuggestionProvider.MODE
+                    )
+                    suggestions.saveRecentQuery(query, null)
                     subscribeUi(binding, artistAdapter)
                     return false
                 }
@@ -70,6 +86,24 @@ class ArtistsFragment : Fragment(), Injectable {
                     return false
                 }
             })
+            setOnSuggestionListener(object : SearchView.OnSuggestionListener {
+                override fun onSuggestionSelect(position: Int): Boolean {
+                    return false
+                }
+
+                override fun onSuggestionClick(position: Int): Boolean {
+                    val cursor: Cursor = suggestionsAdapter.cursor
+                    cursor.moveToPosition(position)
+                    val suggestion: String =
+                        cursor.getString(2)
+                    setQuery(suggestion, true)
+                    return false
+                }
+            })
+
+            val searchManager =
+                requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager
+            setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
         }
     }
 
