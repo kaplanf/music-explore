@@ -13,15 +13,7 @@ class ArtistRepository @Inject constructor(
     fun observeArtists(artistName: String, offset: Int) = resultLiveData(
         databaseQuery = { dao.getArtistbyName(artistName.toLowerCase()) },
         networkCall = { artistRemoteDataSource.searchArtists(artistName, offset) },
-        saveCallResult = {
-            it.results.onEach { artist ->
-                artist.searchQuery = artistName
-            }
-            dao.insertAll(it.results)
-//            if (it.results.none { artist -> artist.artistName.toLowerCase() == artistName.toLowerCase() }.not()) {
-//                dao.insertAll(it.results.filter { artist -> artist.artistName.toLowerCase() == artistName.toLowerCase()})
-//            }
-        })
-
+        saveCallResult = { it.results.onEach { artist -> artist.searchQuery = artistName }
+            dao.insertAll(it.results) })
 
 }

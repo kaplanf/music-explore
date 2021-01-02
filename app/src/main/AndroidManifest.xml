@@ -19,16 +19,24 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+            <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider android:name=".ui.artist.view.SuggestionProvider"
+
+        <provider
+            android:name=".ui.artist.view.SuggestionProvider"
             android:authorities="com.kaplan.musicexplore.ui.artist.view.SuggestionProvider" />
-        <meta-data android:name="android.app.searchable"
-            android:value=".MainActivity"
-            android:resource="@xml/searchable"/>
+
     </application>
 
 </manifest>

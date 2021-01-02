@@ -36,7 +36,6 @@ class ArtistsFragment : Fragment(), Injectable {
     lateinit var artistAdapter: ArtistAdapter
 
     private val endlessScrollModel = EndlessScrollModel()
-    var firstLoad = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,7 +74,6 @@ class ArtistsFragment : Fragment(), Injectable {
                         SuggestionProvider.MODE
                     )
                     suggestions.saveRecentQuery(query, null)
-                    subscribeUi(binding, artistAdapter)
                     return false
                 }
 
@@ -105,6 +103,7 @@ class ArtistsFragment : Fragment(), Injectable {
                 requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager
             setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
         }
+        subscribeUi(binding, artistAdapter)
     }
 
     private fun subscribeUi(binding: FragmentArtistsBinding, adapter: ArtistAdapter) {
@@ -124,12 +123,10 @@ class ArtistsFragment : Fragment(), Injectable {
                 Result.Status.LOADING -> {
                     binding?.apply {
                         progressBar.show()
-                        if (firstLoad) {
-                            isEmpty = true
-                            executePendingBindings()
-                        }
+                        isEmpty = true
+                        executePendingBindings()
+
                     }
-                    firstLoad = false
                 }
                 Result.Status.ERROR -> {
                     binding.progressBar.hide()

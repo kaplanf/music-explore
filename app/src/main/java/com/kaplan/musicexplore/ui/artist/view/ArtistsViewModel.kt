@@ -9,6 +9,7 @@ import com.kaplan.musicexplore.di.CoroutineScropeIO
 import com.kaplan.musicexplore.ui.artist.data.Artist
 import com.kaplan.musicexplore.ui.artist.data.ArtistRepository
 import com.kaplan.musicexplore.util.default
+import com.kaplan.musicexplore.util.elseDo
 import com.kaplan.musicexplore.util.then
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
@@ -29,15 +30,22 @@ class ArtistsViewModel @Inject constructor(
     val listMediator = MediatorLiveData<Result<List<Artist>>>()
 
     fun onLoadMore(artistName: String) {
+        listMediator.removeSource(list)
         artistName?.let {
             artistNameLiveData.value = artistName
-            listMediator.addSource(getArtists(artistName)) {
-                listMediator.postValue(it)
-            }
+            mutablelist = repository.observeArtists(
+                artistName,
+                offset
+            ) as MutableLiveData<Result<List<Artist>>>
         }
+        addSource()
     }
 
-    private fun getArtists(artistName: String) = repository.observeArtists(artistName, offset) as MutableLiveData<Result<List<Artist>>>
+    fun addSource() {
+        listMediator.addSource(list) {
+            listMediator.postValue(it)
+        }
+    }
 
     fun setPage(page: Int) {
         pageLiveData.value = page

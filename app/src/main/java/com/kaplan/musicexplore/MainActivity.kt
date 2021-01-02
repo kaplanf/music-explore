@@ -1,10 +1,7 @@
 package com.kaplan.musicexplore
 
-import android.app.SearchManager
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.SearchRecentSuggestions
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,7 +12,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.kaplan.musicexplore.databinding.ActivityMainBinding
-import com.kaplan.musicexplore.ui.artist.view.SuggestionProvider
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -51,17 +47,6 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
         // Set up navigation menu
         binding.navigationView.setupWithNavController(navController)
-        initSuggestions()
-    }
-
-    fun initSuggestions()
-    {
-        if (Intent.ACTION_SEARCH == intent.action) {
-            intent.getStringExtra(SearchManager.QUERY)?.also { query ->
-                SearchRecentSuggestions(this, SuggestionProvider.AUTHORITY, SuggestionProvider.MODE)
-                    .saveRecentQuery(query, null)
-            }
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
