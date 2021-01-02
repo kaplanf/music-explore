@@ -25,3 +25,6 @@ The app saves results of your every search, ergo, if you lose your connection, t
 load your previous results from the DB.
 
 You can access to liked tracks from left menu, and listen to their previews.
+
+# Important
+Because of DB Schema changes without proper migrations as of now, I would recommend you to test on latest commits always.
