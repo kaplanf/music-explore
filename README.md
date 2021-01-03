@@ -26,5 +26,8 @@ load your previous results from the DB.
 
 You can access to liked tracks from left menu, and listen to their previews.
 
+It also has a search history feature, once you submit a query, it will be saved,
+and you can search artists by clicking on the Search Suggestions
+
 # Important
 Because of DB Schema changes without proper migrations as of now, I would recommend you to test on latest commits always.
