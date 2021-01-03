@@ -19,6 +19,7 @@ import com.kaplan.musicexplore.di.injectViewModel
 import com.kaplan.musicexplore.di.observe
 import com.kaplan.musicexplore.util.ConnectivityUtil
 import com.kaplan.musicexplore.util.EndlessScrollModel
+import com.kaplan.musicexplore.util.hideKeyboard
 import com.kaplan.musicexplore.util.ui.hide
 import com.kaplan.musicexplore.util.ui.show
 import javax.inject.Inject
@@ -73,20 +74,21 @@ class ArtistsFragment : Fragment(), Injectable {
                         SuggestionProvider.AUTHORITY,
                         SuggestionProvider.MODE
                     )
+                    hideKeyboard()
                     suggestions.saveRecentQuery(query, null)
-                    return false
+                    return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
                     if (newText.isNullOrEmpty()) {
                         artistAdapter.updateData(emptyList())
                     }
-                    return false
+                    return true
                 }
             })
             setOnSuggestionListener(object : SearchView.OnSuggestionListener {
                 override fun onSuggestionSelect(position: Int): Boolean {
-                    return false
+                    return true
                 }
 
                 override fun onSuggestionClick(position: Int): Boolean {
@@ -95,7 +97,8 @@ class ArtistsFragment : Fragment(), Injectable {
                     val suggestion: String =
                         cursor.getString(2)
                     setQuery(suggestion, true)
-                    return false
+                    hideKeyboard()
+                    return true
                 }
             })
 
