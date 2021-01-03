@@ -1,5 +1,7 @@
 # Music Explore - Itunes
 Music Exploration app to search and save Artists, Albums, Tracks
+
+
 Technologies implemented:
 
 Architecture: MVVM
